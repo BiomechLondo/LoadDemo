@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Exercise Work Done</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="functions.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h>Select Your Gender</h>
+    <div class="genders">
+            <form name="sex">
+            <select onchange="getgender()" name="genderselect">
+                <option>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                </select>
+                </form>
+            </div><br>
+
+            <label id="option1"></label><br><br/>  <!--Gender selection id-->
+            <label id="result"></label><br>
+
+
+    
+            <div class="Age_Select">
+                <h>Enter Your Age</h>
+                <input onchange="Age()" type="range" id="age">
+                <p><span id="ageslidervalue">0</span> Years Old</p>
+            </div>
+    </div>
+
+
+           <div class="bodyDims">
+               <h>Insert Your Body Dimensions Below</h>
+               <p> These dimensions will allow for more accurate calculations on how different workout effect your specific body</p>
+
+                <p1>Body Weight (lbs)</p1><br/>
+                <input onchange="PersonalDimensions()" style="width: 100%" type="range" id="bodyWeight" min="0" max="500" step="1" class="slider">
+                <p><span id="bodyWehightSliderValue">0</span> lbs</p>
+                
+                <p1>Humerus Length</p1><br/>
+                <input style="width: 40%" type="range" onchange="PersonalDimensions()" id="humerusLength" min="0" max="24" step="1" class="slider">
+                <p><span id="HumerusSliderValue">0</span> in.</p>
+
+                <p1>Forearm Length </p1><br/>
+                <input style="width: 40%" type="range" onchange="PersonalDimensions()" id="forearmLength" min="0" max="24"  step="1" class="slider">
+                <p><span id="ForearmSliderValue">0</span> in.</p>
+                
+
+                <p1>Torso Length </p1><br/>
+                <input style="width: 40%" type="range" onchange="PersonalDimensions()" id="torsoLength" min="0" max="48"  step="1" class="slider">  <!--Mid Section (Waist to Neck)-->
+                <p><span id="TorsoSliderValue">0</span> in.</p>
+
+                <p1>Femur Length</p1><br/>
+                <input input style="width: 40%" type="range" onchange="PersonalDimensions()" id="femurLength" min="0" max="36"  step="1" class="slider">   <!--Upper Leg-->
+                <p><span id="FemurSliderValue">0</span> in.</p>
+            
+
+                <p1>Tibia Length</p1><br/>
+                <input style="width: 40%" type="range" onchange="PersonalDimensions()" id="tibiaLength" min="0" max="36"  step="1" class="slider">  <!--Lower Leg-->
+                <p><span id="TibiaSliderValue">0</span> in.</p>
+
+                
+
+                
+
+
+                <button onclick="JointRange()">View Data Entry </button>
+
+                <p><span id="ageshow">0</span></p>
+
+                <p><span id="gendershow">N/A</span></p>
+
+                <p style="display:none"><span id="joint1">N/A</span></p>
+                <p style="display:none"><span id="joint2">N/A</span></p>
+                <p style="display:none"><span id="joint3">N/A</span></p>
+                <p style="display:none"><span id="joint4">N/A</span></p>
+                <p style="display:none"><span id="joint5">N/A</span></p>
+            </div>   
+
+            <h>Create Todays Workout Plan</h>
+            <div>Workout Plan Creation</div>
+                Workout:
+                <select id="exercise">
+                    <option value="Deadlift">Deadlift</option>
+                    <option value="Benchpress">Benchpress</option>
+                    <option value="Squat">Squat</option>
+                    <option value="Overheadpress">Overhead Press</option>
+                  </select><br/>
+                
+                Sets:
+                <input onchange="PreTableDisplay()" type="range" min="0" max="20" step="1" name="sets" id="sets" /><br />
+                <p><span id="setSliderValue">0</span></p>
+                Reps: 
+                <input onchange="PreTableDisplay()" type="range" min="0" max="50" step="1" name="reps" id="reps" /><br /><br />
+                <p><span id="repSliderValue">0</span></p>
+                Weight: 
+                <input onchange="PreTableDisplay()" type="range" min="0" max="1000" step="5" name="weight" id="weight" /><br /><br />
+                <p><span id="weightSliderValue">0</span></p>
+
+                <input type="button" value="Add Workout" onclick="addRow()" id="add"><br /><br />
+                <button onclick="myFunction()">Remove Last Workout</button>
+
+                <table id="table" border="1">
+                    <tr>
+                        <th>Workout</th>
+                        <th>Sets</th>
+                        <th>Reps</th>
+                        <th>Weight</th>
+                    </tr>
+                </table>
+            </div>
+
+            <input type="button" value="Submit Workout" onclick="addRow()" id="submit"><br /><br />
+                
+
+            <p><span id="DeadliftKneeStart">N/A</span></p>
+            <p><span id="DeadliftCalfStart">N/A</span></p>
+            <p><span id="DeadliftBackStart">N/A</span></p>
+
+            <p><span id="SquatKneeStart">N/A</span></p>
+            <p><span id="SquatCalfStart">N/A</span></p>
+            <p><span id="SquatBackStart">N/A</span></p>
+
+            <p><span id="BenchShoulderStart">N/A</span></p>
+            <p><span id="BenchForearmStart">N/A</span></p>
+
+            <p><span id="OHShoulderStart">N/A</span></p>
+            <p><span id="OHForearmStart">N/A</span></p>
+           
+</body>
