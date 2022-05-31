@@ -1,3 +1,56 @@
+
+
+var BodyWeightValue;
+var TorsoValue;
+var getAge;
+var gender;
+var FemurValue;
+var TibiaValue;
+
+var tibifemoral_joint_max; 
+var tibifemoral_joint_min;
+
+
+var acetabulofemoral_joint_max; 
+var acetabulofemoral_joint_min;
+
+var glenohumeral_joint_max; 
+var glenohumeral_joint_min;
+
+
+var humeroradial_joint_max; 
+var humeroradial_joint_min;
+
+var talocrural_joint_max; 
+var talocrural_joint_min;
+
+var calf_weight;
+var thigh_weight;
+var torso_weight;
+var forearm_weight;
+var bicep_weight;
+var head_weight;
+
+
+var WeightValue;
+var WeightValue_Squat;
+
+var deadliftTibioLoad1;
+var deadliftTaloLoad1;
+var deadliftAcetabulLoad1;
+
+var TotalDeadiftReps;
+var TotalSquatReps;
+
+var squatAcetabulLoad;
+var x_squatHamstringForce;
+var y_squatHamstringForce;
+
+var squatTibioLoad;
+
+
+
+
 function getgender()
         {
             var selectedgender;
@@ -28,27 +81,47 @@ function getgender()
             console.log(ageValue);
         }
 
+        function PersonalDimensions(){
+
+            
+
+            BodyWeightValue = document.getElementById("bodyWeight").value;
+            document.getElementById("bodyWehightSliderValue").innerHTML = BodyWeightValue;
+
+            var HumerusValue = document.getElementById("humerusLength").value;
+            document.getElementById("HumerusSliderValue").innerHTML = HumerusValue;
+
+            var ForearmValue = document.getElementById("forearmLength").value;
+            document.getElementById("ForearmSliderValue").innerHTML = ForearmValue;
+
+            TorsoValue = document.getElementById("torsoLength").value;
+            document.getElementById("TorsoSliderValue").innerHTML = TorsoValue;
+
+            FemurValue = document.getElementById("femurLength").value;
+            document.getElementById("FemurSliderValue").innerHTML = FemurValue;
+
+            TibiaValue = document.getElementById("tibiaLength").value;
+            document.getElementById("TibiaSliderValue").innerHTML = TibiaValue;
+
+            gender = document.getElementById('option1').innerHTML;
+
+            getAge = parseFloat(document.getElementById("ageslidervalue").innerHTML);
+
+
+           
+
+
+            
+        }
+
         function JointRange(){
-            var gender = document.getElementById('option1').innerHTML;
-
-            var getAge = parseFloat(document.getElementById("ageslidervalue").innerHTML);
-
-            var tibifemoral_joint_max = 0; 
-            var tibifemoral_joint_min = 0;
+            PersonalDimensions();
+            
             
 
-            var acetabulofemoral_joint_max = 0; 
-            var acetabulofemoral_joint_min = 0;
-            
-            var glenohumeral_joint_max = 0; 
-            var glenohumeral_joint_min = 0;
-            
+            var bodyweight = BodyWeightValue;
 
-            var humeroradial_joint_max = 0; 
-            var humeroradial_joint_min = 0;
-            
-            var talocrural_joint_max = 0; 
-            var talocrural_joint_min = 0;
+
             
 
             
@@ -68,6 +141,13 @@ function getgender()
                 glenohumeral_joint_max = 150;
                 glenohumeral_joint_min = -30;
 
+                torso_weight = .483 * bodyweight;
+                thigh_weight = .105 * bodyweight;
+                head_weight = .071 * bodyweight;
+                calf_weight = .0450 * bodyweight;
+                forearm_weight = .013 * bodyweight;
+                bicep_weight = .0325 * bodyweight;
+
             }
 
             else if ( getAge >= 9 &&  getAge <= 19 && gender == "Male") {
@@ -85,6 +165,13 @@ function getgender()
 
                 glenohumeral_joint_max = 150;
                 glenohumeral_joint_min = -30;
+
+                torso_weight = .483 * bodyweight;
+                thigh_weight = .105 * bodyweight;
+                head_weight = .071 * bodyweight;
+                calf_weight = .0450 * bodyweight;
+                forearm_weight = .013 * bodyweight;
+                bicep_weight = .0325 * bodyweight;
 
             }
 
@@ -104,6 +191,13 @@ function getgender()
                 glenohumeral_joint_max = 150;
                 glenohumeral_joint_min = -30;
 
+                torso_weight = .483 * bodyweight;
+                thigh_weight = .105 * bodyweight;
+                head_weight = .071 * bodyweight;
+                calf_weight = .0450 * bodyweight;
+                forearm_weight = .013 * bodyweight;
+                bicep_weight = .0325 * bodyweight;
+
             }
 
             else if ( getAge >= 44 && gender == "Male") {
@@ -121,6 +215,13 @@ function getgender()
 
                 glenohumeral_joint_max = 150;
                 glenohumeral_joint_min = -30;
+
+                torso_weight = .483 * bodyweight;
+                thigh_weight = .105 * bodyweight;
+                head_weight = .071 * bodyweight;
+                calf_weight = .0450 * bodyweight;
+                forearm_weight = .013 * bodyweight;
+                bicep_weight = .0325 * bodyweight;
 
             }
 
@@ -140,66 +241,27 @@ function getgender()
                 glenohumeral_joint_max = 150;
                 glenohumeral_joint_min = -30;
 
+                torso_weight = .483 * bodyweight;
+                thigh_weight = .105 * bodyweight;
+                head_weight = .071 * bodyweight;
+                calf_weight = .0450 * bodyweight;
+                forearm_weight = .013 * bodyweight;
+                bicep_weight = .0325 * bodyweight;
+
             }
 
-
-
-            
-            var tibifemoral_joint_range = tibifemoral_joint_max - tibifemoral_joint_min;
-            var acetabulofemoral_joint_range = acetabulofemoral_joint_max - acetabulofemoral_joint_min; 
-            var glenohumeral_joint_range = glenohumeral_joint_max - glenohumeral_joint_min;
-            var humeroradial_joint_range = humeroradial_joint_max - humeroradial_joint_min;
-            var talocrural_joint_range = talocrural_joint_max - talocrural_joint_min;
-
-
-
-            
-          
-
-            
-        
 
 
             document.getElementById("ageshow").innerHTML  = getAge;
 
             document.getElementById("gendershow").innerHTML  = gender;
 
-            document.getElementById("joint1").innerHTML  = tibifemoral_joint_max;
-
-            document.getElementById("joint2").innerHTML  = acetabulofemoral_joint_max;
-
-            document.getElementById("joint3").innerHTML  = glenohumeral_joint_max;
-
-            document.getElementById("joint4").innerHTML  = humeroradial_joint_max;
-
-            document.getElementById("joint5").innerHTML  = talocrural_joint_max;
+            
 
         
         }
 
-        function PersonalDimensions(){
-
-            var BodyWeightValue = document.getElementById("bodyWeight").value;
-            document.getElementById("bodyWehightSliderValue").innerHTML = BodyWeightValue;
-
-            var HumerusValue = document.getElementById("humerusLength").value;
-            document.getElementById("HumerusSliderValue").innerHTML = HumerusValue;
-
-            var ForearmValue = document.getElementById("forearmLength").value;
-            document.getElementById("ForearmSliderValue").innerHTML = ForearmValue;
-
-            var TorsoValue = document.getElementById("torsoLength").value;
-            document.getElementById("TorsoSliderValue").innerHTML = TorsoValue;
-
-            var FemurValue = document.getElementById("femurLength").value;
-            document.getElementById("FemurSliderValue").innerHTML = FemurValue;
-
-            var TibiaValue = document.getElementById("tibiaLength").value;
-            document.getElementById("TibiaSliderValue").innerHTML = TibiaValue;
-
-
-            
-        }
+        
 
         function PreTableDisplay() {
             var SetsValue = document.getElementById("sets").value;
@@ -208,7 +270,7 @@ function getgender()
             var RepsValue = document.getElementById("reps").value;
             document.getElementById("repSliderValue").innerHTML = RepsValue;
 
-            var WeightValue = document.getElementById("weight").value;
+            WeightValue = document.getElementById("weight").value;
             document.getElementById("weightSliderValue").innerHTML = WeightValue;
 
 
@@ -216,7 +278,9 @@ function getgender()
 
         function addRow() {
 
-            JointRange();
+         
+
+       
 
             "use strict";
          
@@ -241,9 +305,9 @@ function getgender()
          
              table.children[0].appendChild(row);
 
-             var deadliftFemurStart = document.getElementById("joint1").innerHTML;
-             var deadliftTibiaStart = document.getElementById("joint5").innerHTML;
-             var deadliftBackStart = document.getElementById("joint2").innerHTML;
+             var deadliftFemurStart = tibifemoral_joint_max;
+             var deadliftTibiaStart = talocrural_joint_max;
+             var deadliftBackStart = acetabulofemoral_joint_max;
 
              var deadliftFemurFinish = 0;
              var deadliftTibiaFinish = 0;
@@ -253,27 +317,28 @@ function getgender()
              var deadliftGluteLoad  = 0;
              var deadliftQuadLoad = 0;
 
-             var deadliftAcetabulLoad = 0;
+            
+             var deadliftAcetabulLoad2 = 0;
              var deadliftTibifemoralLoad  = 0;
              var deadlifTaloLoad = 0;
 
-             var squatFemurStart = document.getElementById("joint1").innerHTML;
-             var squatTibiaStart = document.getElementById("joint5").innerHTML;
-             var squatBackStart = document.getElementById("joint2").innerHTML;
+             var squatFemurStart = tibifemoral_joint_max;
+             var squatTibiaStart = talocrural_joint_max;
+             var squatBackStart = acetabulofemoral_joint_max;
 
              var squatFemurFinish = 0;
              var squatTibiaFinish = 0;
              var squatBackFinish = 0;
 
-             var squatFemurStart = document.getElementById("joint1").innerHTML;
-             var squatTibiaStart = document.getElementById("joint5").innerHTML;
-             var squatBackStart = document.getElementById("joint2").innerHTML;
+             var squatFemurStart = tibifemoral_joint_max;
+             var squatTibiaStart = talocrural_joint_max;
+             var squatBackStart = acetabulofemoral_joint_max;
 
-             var BenchpresshumerusStart = document.getElementById("joint3").innerHTML;
-             var BenchpressforearmStart = document.getElementById("joint4").innerHTML;
+             var BenchpresshumerusStart = glenohumeral_joint_max;
+             var BenchpressforearmStart = humeroradial_joint_max;
 
-             var OHpresshumerusStart = document.getElementById("joint3").innerHTML;
-             var OHforearmStart = document.getElementById("joint4").innerHTML;
+             var OHpresshumerusStart = glenohumeral_joint_max;
+             var OHforearmStart = humeroradial_joint_max;
 
              var OHpresshumerusFinish = 0;
              var OHforearmFinish = 0;
@@ -283,17 +348,63 @@ function getgender()
 
              if (td1.innerHTML == "Deadlift"){
 
-                deadliftFemurStart = .5 * deadliftFemurStart;
-                deadliftTibiaStart = .5 * deadliftTibiaStart;
-                deadliftBackStart = .63 * deadliftBackStart;
+                TotalDeadiftReps = td2.innerHTML * td3.innerHTML;
 
-                deadliftFemurFinish = .9 * deadliftFemurStart;
-                deadliftTibiaFinish = deadliftTibiaStart;
-                deadliftBackFinish = deadliftBackStart;
+                deadliftFemurStart = deadliftFemurStart * (Math.PI/180);
+                deadliftTibiaStart = .5 * deadliftTibiaStart * (Math.PI/180);
+                deadliftBackStart = .40 * deadliftBackStart * (Math.PI/180);
 
-                document.getElementById("DeadliftKneeStart").innerHTML = deadliftFemurStart;
-                document.getElementById("DeadliftCalfStart").innerHTML = deadliftTibiaStart;
-                document.getElementById("DeadliftBackStart").innerHTML = deadliftBackStart;
+                deadliftFemurFinish = .5 * deadliftFemurStart;
+                deadliftTibiaFinish = 3.3 * (deadliftTibiaStart);
+                deadliftBackFinish =  0 * deadliftBackStart;
+
+                var deadliftLoadposition_start = 20 * (Math.PI/180);
+                var deadliftLoadposition_finish = deadliftBackFinish;
+
+
+                //Torque and Load on Hamstring/hip 
+
+                deadliftAcetabulLoad1 = Math.round((((.5*TorsoValue*torso_weight)*(Math.sin(deadliftBackStart)-Math.sin(deadliftBackFinish)))*(deadliftLoadposition_start - deadliftLoadposition_finish)) + (((TorsoValue*head_weight)*(Math.sin(deadliftBackStart)-Math.sin(deadliftBackFinish)))*(deadliftLoadposition_start - deadliftLoadposition_finish))+((TorsoValue*WeightValue)*(-Math.cos(deadliftLoadposition_finish)+Math.cos(deadliftLoadposition_start)))+((TorsoValue*WeightValue)*(Math.sin(deadliftLoadposition_start+deadliftLoadposition_finish)-Math.sin(deadliftLoadposition_finish+deadliftLoadposition_finish)))) * TotalDeadiftReps;
+
+                var y_deadlift_force_back1 = Math.abs(Math.round(((torso_weight*(Math.sin(deadliftBackStart)-Math.sin(deadliftBackFinish)))*(deadliftLoadposition_start - deadliftLoadposition_finish))+ (WeightValue * (-Math.cos(deadliftLoadposition_start) + Math.cos(deadliftLoadposition_finish))) + (WeightValue * (Math.sin(deadliftLoadposition_start+deadliftLoadposition_finish)-Math.sin(deadliftLoadposition_finish+deadliftLoadposition_finish)))));
+
+                var x_deadlift_force_back1 = Math.abs(Math.round((WeightValue * (Math.sin(deadliftLoadposition_start-deadliftLoadposition_finish))) + (WeightValue * (Math.sin(deadliftLoadposition_start+deadliftLoadposition_finish)-Math.sin(deadliftLoadposition_finish+deadliftLoadposition_finish)))));
+
+                var resultant_back_deadlift = Math.abs(Math.round(Math.sqrt(Math.pow(y_deadlift_force_back1,2) + Math.pow(x_deadlift_force_back1,2))));
+
+                var resultant_angle1 = Math.abs(Math.round(Math.atan(y_deadlift_force_back1/x_deadlift_force_back1)));
+
+
+                //Torque and Load on Glute/knee
+
+                deadliftTibioLoad1 = Math.abs(Math.round((((x_deadlift_force_back1)*FemurValue)*(Math.sin(deadliftBackStart) - Math.sin(deadliftBackFinish)))-(((resultant_back_deadlift*Math.cos(resultant_angle1))*FemurValue)*(Math.cos(deadliftFemurStart+deadliftBackStart)-Math.cos(deadliftFemurFinish+deadliftBackFinish)))-(((.5*FemurValue*thigh_weight)*(Math.sin(deadliftFemurStart)-Math.sin(deadliftFemurFinish)))*(deadliftBackFinish-deadliftBackStart))))* TotalDeadiftReps;
+
+  
+
+                var x_deadlift_force_glute1 = Math.abs(Math.round((x_deadlift_force_back1)*(Math.sin(deadliftFemurStart)-Math.sin(deadliftFemurFinish))));
+
+                var y_deadlift_force_glute1 = Math.abs(Math.round((y_deadlift_force_back1*(-Math.cos(deadliftFemurStart)+Math.cos(deadliftFemurFinish))) + ((thigh_weight)*(Math.sin(deadliftFemurStart)-Math.sin(deadliftFemurFinish)))));
+
+
+                var resultant_glute_deadlift = Math.abs(Math.round(Math.sqrt(Math.pow(y_deadlift_force_glute1,2) + Math.pow(x_deadlift_force_glute1,2))));
+
+
+
+                //Torque and Load on Quad/Ankle 
+
+                deadliftTaloLoad1 = Math.abs(Math.round((((x_deadlift_force_glute1)*TibiaValue)*(Math.sin(deadliftTibiaStart) - Math.sin(deadliftTibiaFinish)))-(((x_deadlift_force_glute1)*TibiaValue)*(Math.cos(deadliftTibiaStart+deadliftFemurStart)-Math.cos(deadliftTibiaFinish+deadliftFemurFinish)))-(((.5*TibiaValue*calf_weight)*(Math.sin(deadliftTibiaStart)-Math.sin(deadliftTibiaFinish)))*(deadliftTibiaStart-deadliftTibiaFinish))))* TotalDeadiftReps;
+
+
+                var x_deadlift_force_quad1 = Math.abs(Math.round((x_deadlift_force_glute1)*(Math.sin(deadliftTibiaStart)-Math.sin(deadliftTibiaFinish))));
+
+                var y_deadlift_force_quad1 = Math.abs(Math.round((y_deadlift_force_glute1*(-Math.cos(deadliftTibiaStart)+Math.cos(deadliftTibiaFinish))) + ((calf_weight)*(Math.sin(deadliftTibiaStart)-Math.sin(deadliftTibiaFinish)))));
+
+                var resultant_quad_deadlift = Math.abs(Math.round(Math.sqrt(Math.pow(y_deadlift_force_quad1,2) + Math.pow(x_deadlift_force_quad1,2))));
+
+                
+
+
+
 
                 
 
@@ -301,20 +412,48 @@ function getgender()
 
              if (td1.innerHTML == "Squat"){
 
-                squatFemurStart = squatFemurStart;
-                squatTibiaStart = squatTibiaStart;
-                squatBackStart = squatBackStart;
+                TotalSquatReps = td2.innerHTML * td3.innerHTML;
+                WeightValue_Squat = td4.innerHTML;
 
-                squatFemurFinish = .5 * squatFemurStart;
-                squatTibiaFinish = .45 * squatTibiaStart;
-                squatBackFinish = .22 * squatBackStart;
+                squatFemurStart = squatFemurStart  * (Math.PI/180);
+                squatTibiaStart = 1.6 * squatTibiaStart * (Math.PI/180);
+                squatBackStart = squatBackStart * (Math.PI/180);
+
+                squatFemurFinish = .6 * squatFemurStart;
+                squatTibiaFinish = .75 * squatTibiaStart;
+                squatBackFinish = .85 * squatBackStart;
+
+
+                //Torque and force load at hip/Hamstring Squat
+
+                squatAcetabulLoad = Math.abs(((((TorsoValue*head_weight) + (.5*TorsoValue*torso_weight))*Math.sin(squatBackStart-squatBackFinish))-((TorsoValue*WeightValue_Squat)*Math.cos(squatBackStart-squatBackFinish)))*TotalSquatReps);
+
+                x_squatHamstringForce = Math.abs((((WeightValue_Squat)*Math.cos(squatBackStart-squatBackFinish))));
+
+                y_squatHamstringForce = Math.abs(((((head_weight) + (torso_weight))*Math.sin(squatBackStart-squatBackFinish))+((WeightValue_Squat)*Math.cos(squatBackStart-squatBackFinish))));
+
+                var squatHamstringResulatantAngle = Math.atan(y_squatHamstringForce/x_squatHamstringForce);
+
+                //Torque and Load on Glute/Knees Squat
+
+                squatTibioLoad =
+
+
+
+
+
+                
 
 
                 
 
                 document.getElementById("SquatKneeStart").innerHTML = squatFemurStart;
                 document.getElementById("SquatCalfStart").innerHTML = squatTibiaStart;
-                document.getElementById("SquatBackStart").innerHTML = squatBackStart;                
+                document.getElementById("SquatBackStart").innerHTML = squatBackStart;
+                
+                document.getElementById("BenchShoulderStart").innerHTML = squatHamstringResulatantAngle;
+                document.getElementById("BenchForearmStart").innerHTML = y_squatHamstringForce;
+                document.getElementById("OHShoulderStart").innerHTML = squatAcetabulLoad;
 
              }
 
@@ -325,7 +464,7 @@ function getgender()
 
                 document.getElementById("BenchShoulderStart").innerHTML = BenchpresshumerusStart;
                 document.getElementById("BenchForearmStart").innerHTML = BenchpressforearmStart;
-                               
+                              
 
              }
 
@@ -378,6 +517,11 @@ function getgender()
 
 
           }
+
+          
+
+          
+  
             
 
             
