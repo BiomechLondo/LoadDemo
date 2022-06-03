@@ -330,9 +330,7 @@ function getgender()
              var squatTibiaFinish = 0;
              var squatBackFinish = 0;
 
-             var squatFemurStart = tibifemoral_joint_max;
-             var squatTibiaStart = talocrural_joint_max;
-             var squatBackStart = acetabulofemoral_joint_max;
+
 
              var BenchpresshumerusStart = glenohumeral_joint_max;
              var BenchpressforearmStart = humeroradial_joint_max;
@@ -356,19 +354,20 @@ function getgender()
 
                 deadliftFemurFinish = .5 * deadliftFemurStart;
                 deadliftTibiaFinish = 3.3 * (deadliftTibiaStart);
-                deadliftBackFinish =  0 * deadliftBackStart;
+                deadliftBackFinish =  acetabulofemoral_joint_max * (Math.PI/180);
 
                 var deadliftLoadposition_start = 20 * (Math.PI/180);
-                var deadliftLoadposition_finish = deadliftBackFinish;
+                var deadliftLoadposition_finish = 0;
 
 
                 //Torque and Load on Hamstring/hip 
 
-                deadliftAcetabulLoad1 = Math.round((((.5*TorsoValue*torso_weight)*(Math.sin(deadliftBackStart)-Math.sin(deadliftBackFinish)))*(deadliftLoadposition_start - deadliftLoadposition_finish)) + (((TorsoValue*head_weight)*(Math.sin(deadliftBackStart)-Math.sin(deadliftBackFinish)))*(deadliftLoadposition_start - deadliftLoadposition_finish))+((TorsoValue*WeightValue)*(-Math.cos(deadliftLoadposition_finish)+Math.cos(deadliftLoadposition_start)))+((TorsoValue*WeightValue)*(Math.sin(deadliftLoadposition_start+deadliftLoadposition_finish)-Math.sin(deadliftLoadposition_finish+deadliftLoadposition_finish)))) * TotalDeadiftReps;
+                deadliftAcetabulLoad1 = Math.abs(Math.round(((-.5*TorsoValue*torso_weight) * ((Math.pow(Math.sin(deadliftBackFinish),2))/2) - ((Math.pow(Math.sin(deadliftBackStart),2))/2) + (((.5*TorsoValue*torso_weight)/2)*(deadliftBackFinish-deadliftBackStart)*(Math.sin(2*deadliftBackFinish) - Math.sin(2*deadliftBackStart))) -((.75*TorsoValue*WeightValue)*(Math.cos(deadliftBackFinish)-Math.cos(deadliftBackStart))) + ((.75*TorsoValue*WeightValue) + (Math.sin(deadliftBackFinish) - Math.sin(deadliftBackStart))) - ((TorsoValue*head_weight)*(Math.cos(deadliftBackFinish)-Math.cos(deadliftBackStart))) + ((TorsoValue*head_weight)*(Math.sin(deadliftBackFinish)-Math.sin(deadliftBackStart)))) * TotalDeadiftReps));
+                
 
-                var y_deadlift_force_back1 = Math.abs(Math.round(((torso_weight*(Math.sin(deadliftBackStart)-Math.sin(deadliftBackFinish)))*(deadliftLoadposition_start - deadliftLoadposition_finish))+ (WeightValue * (-Math.cos(deadliftLoadposition_start) + Math.cos(deadliftLoadposition_finish))) + (WeightValue * (Math.sin(deadliftLoadposition_start+deadliftLoadposition_finish)-Math.sin(deadliftLoadposition_finish+deadliftLoadposition_finish)))));
+                var y_deadlift_force_back1 = Math.abs(Math.round((torso_weight*(Math.sin(deadliftBackFinish) - Math.sin(deadliftBackStart)))+(WeightValue*(Math.cos(deadliftBackFinish)-Math.cos(deadliftBackStart)))+(head_weight*(Math.cos(deadliftBackFinish)-Math.cos(deadliftBackStart)))));
 
-                var x_deadlift_force_back1 = Math.abs(Math.round((WeightValue * (Math.sin(deadliftLoadposition_start-deadliftLoadposition_finish))) + (WeightValue * (Math.sin(deadliftLoadposition_start+deadliftLoadposition_finish)-Math.sin(deadliftLoadposition_finish+deadliftLoadposition_finish)))));
+                var x_deadlift_force_back1 = Math.abs(Math.round((WeightValue*(Math.sin(deadliftBackFinish)-Math.sin(deadliftBackStart))) + (head_weight*(Math.sin(deadliftBackFinish)-Math.sin(deadliftBackStart)))));
 
                 var resultant_back_deadlift = Math.abs(Math.round(Math.sqrt(Math.pow(y_deadlift_force_back1,2) + Math.pow(x_deadlift_force_back1,2))));
 
@@ -377,13 +376,12 @@ function getgender()
 
                 //Torque and Load on Glute/knee
 
-                deadliftTibioLoad1 = Math.abs(Math.round((((x_deadlift_force_back1)*FemurValue)*(Math.sin(deadliftBackStart) - Math.sin(deadliftBackFinish)))-(((resultant_back_deadlift*Math.cos(resultant_angle1))*FemurValue)*(Math.cos(deadliftFemurStart+deadliftBackStart)-Math.cos(deadliftFemurFinish+deadliftBackFinish)))-(((.5*FemurValue*thigh_weight)*(Math.sin(deadliftFemurStart)-Math.sin(deadliftFemurFinish)))*(deadliftBackFinish-deadliftBackStart))))* TotalDeadiftReps;
+               deadliftTibioLoad1 = Math.abs(Math.round((((x_deadlift_force_back1)*FemurValue)*(Math.cos    (deadliftFemurFinish) - Math.cos(deadliftFemurStart)))-(((y_deadlift_force_back1)*FemurValue)*(Math.sin(deadliftFemurFinish)) + (Math.sin(deadliftFemurStart))) + ((.5*FemurValue*thigh_weight)*(Math.sin(deadliftBackStart)-Math.sin(deadliftBackFinish)))* (Math.cos(deadliftFemurFinish) - Math.cos(deadliftFemurStart)))) * TotalDeadiftReps;
 
   
+                var x_deadlift_force_glute1 = Math.abs(Math.round((x_deadlift_force_back1)*(-Math.cos(deadliftFemurFinish)+Math.cos(deadliftFemurStart))));
 
-                var x_deadlift_force_glute1 = Math.abs(Math.round((x_deadlift_force_back1)*(Math.sin(deadliftFemurStart)-Math.sin(deadliftFemurFinish))));
-
-                var y_deadlift_force_glute1 = Math.abs(Math.round((y_deadlift_force_back1*(-Math.cos(deadliftFemurStart)+Math.cos(deadliftFemurFinish))) + ((thigh_weight)*(Math.sin(deadliftFemurStart)-Math.sin(deadliftFemurFinish)))));
+                var y_deadlift_force_glute1 = Math.abs(Math.round((y_deadlift_force_back1*(Math.sin(deadliftFemurFinish)-Math.sin(deadliftFemurStart))) + ((thigh_weight)*(Math.sin(deadliftFemurFinish)-Math.sin(deadliftFemurStart)))));
 
 
                 var resultant_glute_deadlift = Math.abs(Math.round(Math.sqrt(Math.pow(y_deadlift_force_glute1,2) + Math.pow(x_deadlift_force_glute1,2))));
@@ -392,21 +390,16 @@ function getgender()
 
                 //Torque and Load on Quad/Ankle 
 
-                deadliftTaloLoad1 = Math.abs(Math.round((((x_deadlift_force_glute1)*TibiaValue)*(Math.sin(deadliftTibiaStart) - Math.sin(deadliftTibiaFinish)))-(((x_deadlift_force_glute1)*TibiaValue)*(Math.cos(deadliftTibiaStart+deadliftFemurStart)-Math.cos(deadliftTibiaFinish+deadliftFemurFinish)))-(((.5*TibiaValue*calf_weight)*(Math.sin(deadliftTibiaStart)-Math.sin(deadliftTibiaFinish)))*(deadliftTibiaStart-deadliftTibiaFinish))))* TotalDeadiftReps;
+                deadliftTaloLoad1 = ((TibiaValue*x_deadlift_force_glute1)*(-Math.cos(deadliftTibiaFinish)+Math.cos(deadliftTibiaStart))) + ((TibiaValue*y_deadlift_force_glute1) * (Math.sin(deadliftTibiaFinish) - Math.sin(deadliftTibiaStart))) + ((.5 * calf_weight * TibiaValue) * (Math.sin(deadliftTibiaFinish) - Math.sin(deadliftTibiaStart))) * TotalDeadiftReps;
 
 
-                var x_deadlift_force_quad1 = Math.abs(Math.round((x_deadlift_force_glute1)*(Math.sin(deadliftTibiaStart)-Math.sin(deadliftTibiaFinish))));
+                var x_deadlift_force_quad1 = Math.abs(Math.round((x_deadlift_force_glute1)*(-Math.cos(deadliftTibiaStart)+Math.cos(deadliftTibiaFinish))));
 
-                var y_deadlift_force_quad1 = Math.abs(Math.round((y_deadlift_force_glute1*(-Math.cos(deadliftTibiaStart)+Math.cos(deadliftTibiaFinish))) + ((calf_weight)*(Math.sin(deadliftTibiaStart)-Math.sin(deadliftTibiaFinish)))));
+                var y_deadlift_force_quad1 = Math.abs(Math.round((y_deadlift_force_glute1*(Math.sin(deadliftTibiaStart)-Math.sin(deadliftTibiaFinish))) + ((calf_weight)*(Math.sin(deadliftTibiaStart)-Math.sin(deadliftTibiaFinish)))));
 
                 var resultant_quad_deadlift = Math.abs(Math.round(Math.sqrt(Math.pow(y_deadlift_force_quad1,2) + Math.pow(x_deadlift_force_quad1,2))));
 
-                
-
-
-
-
-                
+                document.getElementById("BenchForearmStart").innerHTML = deadliftTibioLoad1;
 
              }
 
@@ -426,34 +419,34 @@ function getgender()
 
                 //Torque and force load at hip/Hamstring Squat
 
-                squatAcetabulLoad = Math.abs(((((TorsoValue*head_weight) + (.5*TorsoValue*torso_weight))*Math.sin(squatBackStart-squatBackFinish))-((TorsoValue*WeightValue_Squat)*Math.cos(squatBackStart-squatBackFinish)))*TotalSquatReps);
+                
+                squatAcetabulLoad = Math.abs(Math.round(((-.5*TorsoValue*torso_weight) * ((Math.pow(Math.sin(squatBackStart),2))/2) - ((Math.pow(Math.sin(squatBackFinish),2))/2) + (((.5*TorsoValue*torso_weight)/2)*(squatBackFinish-squatBackStart)*(Math.sin(2*squatBackFinish) - Math.sin(2*squatBackStart))) -((.75*TorsoValue*WeightValue_Squat)*(Math.cos(squatBackFinish)-Math.cos(squatBackStart))) + ((.75*TorsoValue*WeightValue_Squat) + (Math.sin(squatBackFinish) - Math.sin(squatBackStart))) - ((TorsoValue*head_weight)*(Math.cos(squatBackFinish)-Math.cos(squatBackStart))) + ((TorsoValue*head_weight)*(Math.sin(squatBackFinish)-Math.sin(squatBackStart)))) * TotalSquatReps));
 
-                x_squatHamstringForce = Math.abs((((WeightValue_Squat)*Math.cos(squatBackStart-squatBackFinish))));
+                x_squatHamstringForce = Math.abs((((WeightValue_Squat)*(Math.sin(squatBackStart)-Math.sin(squatBackFinish)))));
 
-                y_squatHamstringForce = Math.abs(((((head_weight) + (torso_weight))*Math.sin(squatBackStart-squatBackFinish))+((WeightValue_Squat)*Math.cos(squatBackStart-squatBackFinish))));
+                y_squatHamstringForce = Math.abs(((((head_weight) + (torso_weight))*(-Math.cos(squatBackStart)+Math.cos(squatBackFinish)))+((WeightValue_Squat)*(-Math.cos(squatBackStart)+Math.cos(squatBackFinish)))));
+
+                var resultant_hamstring_squat = Math.abs(Math.round(Math.sqrt(Math.pow(y_squatHamstringForce,2) + Math.pow(x_squatHamstringForce,2))));
 
                 var squatHamstringResulatantAngle = Math.atan(y_squatHamstringForce/x_squatHamstringForce);
 
                 //Torque and Load on Glute/Knees Squat
 
-                squatTibioLoad =
+                squatTibioLoad = Math.abs((-(FemurValue*x_squatHamstringForce*.5*.5)*(-Math.cos((squatFemurStart+squatBackStart))+Math.cos((squatFemurFinish+squatBackFinish))))  - (( squatFemurFinish - squatFemurStart)*Math.sin(squatBackStart)-Math.sin(squatBackFinish))  + ((-FemurValue*y_squatHamstringForce*.5*.5)*(-Math.cos(2*(squatFemurStart+squatBackStart)+(Math.cos((squatFemurStart+squatBackFinish)))))-((squatFemurStart-squatFemurFinish)*Math.sin(squatBackStart)-Math.sin(squatBackFinish))+((FemurValue*thigh_weight)*(squatFemurStart-squatFemurFinish))+(Math.sin(2*(squatFemurStart))-Math.sin(2*(squatFemurFinish))))) * TotalSquatReps;
+
+               // x_squatGluteForce  = 
+
 
 
 
 
 
                 
-
-
                 
-
-                document.getElementById("SquatKneeStart").innerHTML = squatFemurStart;
-                document.getElementById("SquatCalfStart").innerHTML = squatTibiaStart;
-                document.getElementById("SquatBackStart").innerHTML = squatBackStart;
+                //document.getElementById("BenchShoulderStart").innerHTML = squatTibioLoad;
                 
-                document.getElementById("BenchShoulderStart").innerHTML = squatHamstringResulatantAngle;
-                document.getElementById("BenchForearmStart").innerHTML = y_squatHamstringForce;
-                document.getElementById("OHShoulderStart").innerHTML = squatAcetabulLoad;
+                document.getElementById("OHShoulderStart").innerHTML = squatTibioLoad;
+                
 
              }
 

@@ -193,10 +193,10 @@ google.charts.setOnLoadCallback(drawStacked);
 
 function drawStacked() {
       var data = google.visualization.arrayToDataTable([
-        ['Genre', 'Deadlift', 'Test'
+        ['Genre', 'Deadlift', 'Squat'
          , { role: 'annotation' } ],
-        ['Hip Joint Load', deadliftAcetabulLoad1,deadliftTibioLoad1,  ''],
-        ['Knee Joint Load', deadliftTibioLoad1,deadliftTibioLoad1,  ''],
+        ['Hip Joint Load', deadliftAcetabulLoad1,squatAcetabulLoad,  ''],
+        ['Knee Joint Load', deadliftTibioLoad1,squatTibioLoad,  ''],
         ['Ankle Joint Load', deadliftTaloLoad1,deadliftTibioLoad1,  '']
       ]);
 
